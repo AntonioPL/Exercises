@@ -7,7 +7,7 @@ head(mtcars)
 nrow(mtcars)
 ncol(mtcars)
 
-#3. Crear un nuevo data frame con los modelos de coche que consumen menos de 15 millas/gal´on. 
+#3. Crear un nuevo data frame con los modelos de coche que consumen menos de 15 millas/galÂ´on. 
 
 mtcarslow <- mtcars[mtcars$mpg < 15,]
 print (mtcarslow)
@@ -35,16 +35,16 @@ print (z)
 names(mtcars) <- paste(z)
 mtcars
 
-#1. ¿Como esta estructurado el data frame? (utilizar las funciones str() y dim()). 
+#1. Â¿Como esta estructurado el data frame? (utilizar las funciones str() y dim()). 
 
 str(iris)
 dim(iris)
 
-#2. ¿De qu´e tipo es cada una de las variables del data frame?.
+#2. Â¿De quÂ´e tipo es cada una de las variables del data frame?.
 
 sapply(iris, class)
 
-#3. Utilizar la funci´on summary() para obtener un resumen de los estad´isticos de las variables
+#3. Utilizar la funciÂ´on summary() para obtener un resumen de los estadÂ´isticos de las variables
 
 summary(iris)
 
@@ -81,7 +81,7 @@ range(iris[[5]])
 iris$Sepal.Length[1:5] <- NA
 iris$Sepal.Width[1:5] <- NA
 
-#6. ¿Que pasa si usamos ahora las funciones mean(), range() con las variables Sepal.Length y Sepal.Width? ¿Tiene el mismo problema la funci´on summary()?
+#6. Â¿Que pasa si usamos ahora las funciones mean(), range() con las variables Sepal.Length y Sepal.Width? Â¿Tiene el mismo problema la funciÂ´on summary()?
 
 #No se calcula mean() ni range().
 
@@ -89,12 +89,12 @@ summary(iris$Petal.Length)
 
 #summary() da resultados. 
 
-#7. Ver la documentaci´on de mean(), range(), etc. ¿Qu´e par´ametro habr´ia que cambiar para arreglar el problema anterior?
+#7. Ver la documentaciÂ´on de mean(), range(), etc. Â¿QuÂ´e parÂ´ametro habrÂ´ia que cambiar para arreglar el problema anterior?
 
 mean (iris$Sepal.Length, na.rm =TRUE)
 mean (iris$Sepal.Width, na.rm =TRUE)
 
-#8. Visto lo anterior, ¿por qu´e es importante codi???car los missing values como NA y no como 0, por ejemplo
+#8. Visto lo anterior, Â¿por quÂ´e es importante codi???car los missing values como NA y no como 0, por ejemplo
 
 # ceros falsifican el resultado, mientras NA puede ser omitido.
 
@@ -103,7 +103,7 @@ mean (iris$Sepal.Width, na.rm =TRUE)
 na.omit(iris$Sepal.Length)
 na.omit(iris$Sepal.Width)
 
-#10 Calcular la media de la variable Petal.Length para cada uno de las distintas especies (Species). Pista: usar la funci´on tapply().
+#10 Calcular la media de la variable Petal.Length para cada uno de las distintas especies (Species). Pista: usar la funciÂ´on tapply().
 
 tapply(iris$Petal.Length, INDEX = iris$Species,mean)
 # o
