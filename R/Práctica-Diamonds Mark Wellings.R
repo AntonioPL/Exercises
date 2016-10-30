@@ -2,11 +2,11 @@
 
 # Hacer uso del dataset "diamonds" que contendra el precio (entre otras variables interesantes) de unos 54.000 diamantes.
 #
-# Objetivo : realizar distintos tipos de análisis estadístico de sus variables para intentar
-# averiguar algún tipo de comportamiento oculto aparentemente en los datos. 
+# Objetivo : realizar distintos tipos de anÃ¡lisis estadÃ­stico de sus variables para intentar
+# averiguar algÃºn tipo de comportamiento oculto aparentemente en los datos. 
 #
-# Para ello os marco los siguientes pasos: tipos de variables, medidas de posición central, medidas de dispersión, 
-# distribución y relación entre ellas, más análisis de regresión
+# Para ello os marco los siguientes pasos: tipos de variables, medidas de posiciÃ³n central, medidas de dispersiÃ³n, 
+# distribuciÃ³n y relaciÃ³n entre ellas, mÃ¡s anÃ¡lisis de regresiÃ³n
 #
 # Los diferentes indicadores presentes en el dataset "diamonds" son los siguientes:
 # price: Precio en dolares americanos
@@ -18,7 +18,7 @@
 # y: ancho en  mm 
 # z: profundidad en mm 
 # depth: porcentaje total de profundidad 
-# table: anchura de la parte superior de diamante con relaci�n al punto m�s ancho 
+# table: anchura de la parte superior de diamante con relación al punto más ancho 
 
 
 # Responde cada bloque cubriendo al menos lo indicado:
@@ -46,9 +46,9 @@ muestra <- sample(dt_cut,nrow(dt)*0.20,replace = F)
 summary(muestra)
 head(muestra)
 ##########
-#2: An�lisis de las variables
-# An�lisis descriptivo de las variables: Tipo de variable, distribuci�n y representaci�n
-# Detecci�n de casos at�picos y su tratamiento
+#2: Análisis de las variables
+# Análisis descriptivo de las variables: Tipo de variable, distribución y representación
+# Detección de casos atípicos y su tratamiento
 
 ##Tipo de variable
 # price: variable cuantitativa continua -> puede adquirir cualquier valor dentro de un intervalo
@@ -113,8 +113,8 @@ summary(dt$table)
 hist(dt$table)
 boxplot(dt$table)
 
-# Detecci�n de casos at�picos y su tratamiento
-##Cualquier valor fuera del intervalo (Q3 + 1.5 RIC, Q1 - 1.5 RIC) se considerar� valor at�pico 
+# Detección de casos atípicos y su tratamiento
+##Cualquier valor fuera del intervalo (Q3 + 1.5 RIC, Q1 - 1.5 RIC) se considerará valor atípico 
 ### RIC = Rango inter cuartilico
 ### Existe la posibilidad de encontrar outliers con una funcion dentro de "boxplot". Ejemplo con carat:
 test <- dt$carat
@@ -193,7 +193,7 @@ mean_depth - error_depth
 
 ##El intervalo de confianza para carat esta entre: 61.74092 y 61.77407 (error 10%)
 
-# Formula un test de hip�tesis
+# Formula un test de hipótesis
 #Ho: media = 0.79 # media igual
 #H1: media != 0.79 # media no igual
 t.test(sample_carat, mu=0.79, conf.level = 0.95)
@@ -210,23 +210,23 @@ mean(dt_carat)
 Ho: media >= 0.79 #media mayor o igual
 H1: media < 0.79 #media mayor o igual
 
-# Estad�stico
+# Estadístico
 t= (0.7989755-0.7979397)/(0.4740779/sqrt(n))
 t
 
-# valor te�rico 
+# valor teórico 
 qt(0.05,df=19999)
 -qt(.95, df=19999)
 
-# valor te�rico < valor del experimento
+# valor teórico < valor del experimento
 # -1.64493 < 0.3089877
-# No se rechaza Ho, admitimos como correcta la especificaci�n.
+# No se rechaza Ho, admitimos como correcta la especificación.
 ######
 
 
 # 4: Relaciones entre las variables
 # Muestra las relaciones que existen entre variables 
-# (dependencia, anova, correlaci�n)
+# (dependencia, anova, correlación)
 
 ##ANOVA##
 #Relacion entre carat y precio: 
@@ -267,9 +267,9 @@ cor.test(dt$carat,dt$z)
 
 #####
 
-# 5: An�lisis de regresi�n
-# Formular un modelo de regresi�n y analiza los resultados
-# Interpreta los coeficientes estandarizados de la regresi�n
+# 5: Análisis de regresión
+# Formular un modelo de regresión y analiza los resultados
+# Interpreta los coeficientes estandarizados de la regresión
 
 
 ##La variable dependiente sera el precio y se analiza su relacion con las variables independientes/predictoras:
@@ -337,7 +337,7 @@ plot(model2)
 # El comportamiento anadiendo una variable es muy parecido al del model1, incluso se ajusta mas, es decir los residuos/desviaciones son menos.  
 
 ######
-# Aplica una transformaci�n a la regresi�n y analiza los resultados.
+# Aplica una transformación a la regresión y analiza los resultados.
 
 ## El motivo de una transformacion es que se incrementa el valor R^2, es decir reducir la varianza  
 ## y acercar los fitted values a la linea de regresion. Posibles transformacion:
