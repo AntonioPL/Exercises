@@ -1,0 +1,85 @@
+HINT1:
+
+Some methods/techniques require variable to be of some type. For example, logistic regression require all attributes of variables to be numeric, text is not allowed.
+
+HINT2:
+
+Return the probability of being 1 (fraud), do not return the class 0 or 1. The system has a rule to avoid dataset with all pred equals to 0s and 1's. The exact rule is such that you are not allowed to send submissions with predicted values with less than 3 distinct values. That is, your pred column should always have 3 or more distinct values. Do you know what is a Decistion Tree? Surely you do, here is a code with DT in Python https://dl.dropboxusercontent.com/u/28535341/CIFF_MBD_FA_s03-DecisionTree.ipynb
+
+HINT3:
+
+Although you willl be assessed on the KS2, use the GINI to check you are improving your model, because it does not have the random factor of my KS2 implementation!!!! To calculate KS2, your data must be sorted by pred, but what happen when two rows have the same pred values? KS2 becomes a weak measure. You can see that problem in the example: https://dl.dropboxusercontent.com/u/28535341/EXAMPLE_of_KS2_calculation_in_excel.xlsx; Therefore, KS2 requires models with lots of predictions to be a good measure, on the other hand, GINI hides the problem of a bad model, with low number of prediction, that is why I use KS2 to evaluate you. I want a good model.
+
+HINT4:
+
+Spread you predictions, this way you can get a more stable KS2!!! Models very few characteristic and few attributes lead to concentration around some prediction values and in practice will be worse because it limits the use in a later stage. If you have to choose a model with similar GINI or KS2 pick the one with more variables. In order to calculate WoE (Weigth of Evidence) and IV (Information Value), have a look into this example code: https://dl.dropboxusercontent.com/u/28535341/python2_MBD_FA_S02b_WoECalculation.py
+
+HINT 5:
+
+Although the transformation phase comes first, it depends on the method you will use in model training phase. Therefore, decide the statistic/machine learning method first and then transform the variables accordingly. For example, logistic regression (LR) needs variable to have linear relationship with the target variable; therefore, you need to use a transformation (binary, weight of evidence or interpolation for this problem any work similarly). However, Decision Tree (DT) do not, so for DT you need to do very little transformations, just transforming text variable into numeric.
+
+HINT 6:
+
+Regarding transformation, if you do not know much Python to implement fancy transformation via programming, do not worry. If you need to do transformation alternatively to programming you can just open the CSVs and do it using EXCEL, remember to repeat the the same transformation to both dev.csv and oot.csv. Curious about calculating Feauture Importance? Check out this code: https://dl.dropboxusercontent.com/u/28535341/CIFF_MBD_FA_s03-feature_importance.ipynb
+
+HINT 7
+
+Forget GLM, you will not get anywhere in fraud detection with this method!!!! When changing to different method, remember to play with the method paramter first, because default parameters sometime are terribles for fraud detection. Changing GLM to other technique/methods in Python is normally very straight forward, after choosing a method try goggling how to do it! Curious about how to calculate the PSI? Check out this code: https://dl.dropboxusercontent.com/u/28535341/CIFF_MBD_FA_s03-population_stability_index.ipynb
+
+HINT 8: 
+
+In this challenge, if you do not know what to do it may be the case that my next HINT will solve your question. Keep sending a daily prediction to receive more hints.
+here goes a good one: Have you thought of trying to find the best model that using as your objective function the geometric mean between the dev gini and the oot gini? I hope that that will get you a more stable model. For knowing how to calculate it, check out: https://www.mathsisfun.com/numbers/geometric-mean.html
+
+HINT 9:
+
+What is more important ROBUSTNESS or PREDICTION? Depending on the problem, the answer is robustness; logistic regression (LR) could be a good option. For some datasets, the answer is prediction power; decision tree (DT) could be a good option. Fraud is a very hard problem, so it needs prediction power (some overfitting is necessary), but in this sample data customer are changing so robustness is also a key aspect. Search for techniques that could blend the predicting power of a DT and the robustness of a LR.
+
+HINT10:
+
+Regarding transformation. Whatever you do in the dev sample, you should repeat in the oot. That may not be the case when you notice that the oot is different from the dev sample (like in our case)! So you may decide to apply a 'transformation' that can make that difference smaller. For example, var 65 goes from 21 to 63 on dev and 18 to 81 on oot, 18-20 and 64-81 are called unknown value, what to do with them?
+
+HINT11:
+
+You are playing with real data and real data has real problems. Have you noticed that the oot dataset may have values that are not present on the dev sample? Fraudsters may try to beat the system avoiding informing something or testing values out of range. Make sure you know what to do with unknown values in the oot. Basically to fine tune your model you should try three option: replace all unknown/out of range values from the oot with (1) the highest value in dev sample, (2) the average in dev sample or (3) the smallest value in dev sample - you will only know which to choose after performing a test. For each variable transformed, develop a model with that variable alone and pick the option which improves the most the GINI on OOT - hope that helps ;-)
+Also, check out how competitors are doing: http://mgadi.pythonanywhere.com/fm_lastsub
+
+HINT12:
+
+best practice described in class is a 80-20 rule. Get 80% of the result with just 20% of the effort. For this exercise, do challenge the best practice if you want a good grade! GLM, Logistic Regression, Decision Tree and Neural Network are not the best technique for this problem.
+
+HINT13:
+Do you want to try Genetic algorithms to select the best features? Read: http://www.ime.usp.br/~mgadi/paper_ComparisonwithParametricOptimizationinCreditCardFraudDetection_ICMLA08.pdf, in Python you can use deap library, maybe this code can help you: https://dl.dropboxusercontent.com/u/28535341/CIFF_MBD_FA_s02b-feature_selection_with_genetic_algorithm.py
+
+HINT 14:
+
+Have you searched the web for modelling techniques for fraud detection yet? - Come again tomorrow, I will review a good technique for those who has not yet found it. Meanwhile, check an interesting way of finding feature importance: http://scikit-learn.org/stable/auto_examples/ensemble/plot_forest_importances.html
+
+HINT 15
+Hope you are doing well!!! Have you tried Random Forest or other essemble models? check out: http://scikit-learn.org/stable/modules/ensemble.html
+
+If you are still catching up try this: Try Random Forest (RF) algorithm, start by doing the minimum number of action possible, that is, create a RF with all 81 variables, do not perform any variable selections and see what you get. Play with RF own parameter first (n_estimators). When you are happy with this parameter, then start removing variables and doing transformation that could fine-tune your model.
+
+HINT 16:
+
+Have you tried supervised binning? http://www.saedsayad.com/supervised_binning.htm
+
+
+EXTRA HINT TODAY: to what degree does the use of ensemble methods affect prediction vs. robustness?
+The answer is a lot. Let us think for a moment what we learnt in class about fraudster.
+They try to beat the system, and like in the movie Matrix, these 'errors' are like Neo and they keep coming back again and again!
+In theory, it is impossible to find one model that can predict all behaviours from this fraudsters - that is what we are trying do when we use LR, DT, NN, SVM, etc...
+
+What we need is many different models, each aiming to predict one specific fraud behaviour. That is what ensemble models do for us in a way, for this reason Random Forest and other using Bagging or Voting are more appropriate for fraud detection.
+
+Without you noticing, they increase the prediction by over fitting a model for each fraud behaviour and outliers and increase robustness by having this 'memory' over time. It will always remember the fraud behaviours (like a vaccine develops many different antibodies) should it repeat in the future!
+
+ONLY REAL DATA SCIENTISTS KNOW THIS! Welcome to the team ;-)
+
+HINT 17:
+
+Make sure you know what to do with unknown values in the oot (and NAN in any of the datasets). Basically to fine tune your model you should try three option: unknown are transformed to be equal to the best dummy/category/bin, equal to the average dummy/category/bin or equal to the worse dummy/category/bin - you will only know which is the 'correct one' when you develop 3 models, one for each option and choose the option that improves the GINI more (or at least improve a little) - hope that helps ;-) You should repeat this process to all variables with NAN and/or unknown values.
+
+HINT 18:
+
+Have you tried to reweigh the dev sample to get it closer to the oot? Read: http://www.ime.usp.br/~mgadi/paper_CreditCardFraudDetectionWithArtificialImmuneSystem_ICARIS08.pdf
